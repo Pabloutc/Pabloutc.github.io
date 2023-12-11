@@ -50,6 +50,21 @@
 
 
         }
+        function agregarPlato(nombre, descripcion, precio) {
+            // Obtiene una referencia a la colección de platos
+            var platosRef = database.ref('platos');
+
+            // Genera un nuevo identificador único para el plato
+            var nuevoPlatoRef = platosRef.push();
+
+            // Agrega el plato a la base de datos
+            nuevoPlatoRef.set({
+                nombre: nombre,
+                descripcion: descripcion,
+                precio: precio
+            });
+        }
+
       </script>
 
 
