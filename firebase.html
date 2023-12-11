@@ -36,20 +36,6 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const database=getDatabase(app);
-        window.crearRegistro =function(){
-            const nombre =document.getElementById("nombre").value;
-            const edad =document.getElementById("edad").value;
-            console.log(nombre, edad);
-            push(
-                ref(database, 'septimo'),
-                {
-                    name:nombre,
-                    age:edad
-                }
-            );
-
-
-        }
         function agregarPlato(nombre, descripcion, precio) {
             // Obtiene una referencia a la colección de platos
             var platosRef = database.ref('platos');
@@ -63,9 +49,9 @@
                 descripcion: descripcion,
                 precio: precio
             });
-        }
+            }
 
-      </script>
+    </script>
 
 
 
