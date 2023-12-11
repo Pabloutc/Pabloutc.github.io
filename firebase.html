@@ -56,80 +56,23 @@
         };
       
         // Initialize Firebase
-        
-        firebase.initializeApp(firebaseConfig);
-
-        // Referencia a la colección de platos
-        var platosRef = firebase.database().ref('platos');
-
-        // Función para agregar un plato
-        function agregarPlato() {
-        var nombre = document.getElementById('nombre').value;
-        var descripcion = document.getElementById('descripcion').value;
-        var precio = parseFloat(document.getElementById('precio').value);
-
-        // Validación básica
-        if (nombre && descripcion && !isNaN(precio)) {
-            platosRef.push({
-            nombre: nombre,
-            descripcion: descripcion,
-            precio: precio
-            });
-
-            // Limpiar el formulario después de agregar
-            document.getElementById('nombre').value = '';
-            document.getElementById('descripcion').value = '';
-            document.getElementById('precio').value = '';
-        } else {
-            alert('Por favor, completa todos los campos correctamente.');
+        const app = initializeApp(firebaseConfig);
+        const database=getDatabase(app);
+        const tableBody=document.getElementById('table')
+        window.crearRegistro =function(){
+            const nombre =document.getElementById("nombre").value;
+            const descripcion =document.getElementById("descripcion").value;
+            const precio = parseFloat(document.getElementById('precio').value);
+            console.log(nombre, descripcion ,precio);
+            push(
+                ref(database, 'Pablo_Pullopaxi'),
+                {
+                    name:nombre,
+                    descripcion:descripcion,
+                    precio:precio
+                }
+            );
         }
-        }
-
-        // Función para mostrar los platos
-        function mostrarPlatos(platos) {
-        var platosList = document.getElementById('platosList');
-        platosList.innerHTML = '';
-
-        for (var key in platos) {
-            if (platos.hasOwnProperty(key)) {
-            var plato = platos[key];
-
-            var platoDiv = document.createElement('div');
-            platoDiv.innerHTML = '<strong>' + plato.nombre + '</strong>: ' +
-                                plato.descripcion + ' - $' + plato.precio.toFixed(2);
-
-            var editarButton = document.createElement('button');
-            editarButton.innerHTML = 'Editar';
-            editarButton.onclick = function() {
-                // Agrega la lógica para editar el plato (puedes abrir un modal, por ejemplo)
-                console.log('Editar plato:', key);
-            };
-
-            var eliminarButton = document.createElement('button');
-            eliminarButton.innerHTML = 'Eliminar';
-            eliminarButton.onclick = function() {
-                eliminarPlato(key);
-            };
-
-            platoDiv.appendChild(editarButton);
-            platoDiv.appendChild(eliminarButton);
-            platosList.appendChild(platoDiv);
-            }
-        }
-        }
-
-        // Función para eliminar un plato
-        function eliminarPlato(platoId) {
-        if (confirm('¿Estás seguro de que quieres eliminar este plato?')) {
-            platosRef.child(platoId).remove();
-        }
-        }
-
-        // Escucha los cambios en la base de datos y actualiza la interfaz de usuario
-        platosRef.on('value', function(snapshot) {
-        var platos = snapshot.val();
-        mostrarPlatos(platos);
-        });
         
         
     </script>
