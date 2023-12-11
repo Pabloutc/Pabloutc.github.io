@@ -6,16 +6,47 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>hola  mundo</h1>
+    <style>
+        body {
+          background-image: url('https://unsplash.com/es/fotos/foto-del-pub-ambientado-en-la-habitacion-durante-el-dia-poI7DelFiVA'); /* Reemplaza con la ruta de tu imagen de fondo */
+          background-size: cover;
+          background-position: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          margin: 0;
+          font-family: Arial, sans-serif;
+        }
+    
+        #content {
+          background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente para mejorar la legibilidad */
+          padding: 20px;
+          border-radius: 10px;
+          text-align: center;
+        }
+    
+        form {
+          margin-bottom: 20px;
+        }
+    
+        #platosList {
+          max-width: 400px; /* Ancho máximo de la lista de platos */
+          margin: 0 auto;
+        }
+      </style>
+
+    <h1>crud Restaurante</h1>
     <form id="crud-form">
         <label for="nombre">Nombre</label>
         <input type="text" id="nombre">
+        <br>
         <label for="descripcion">Descripción:</label>
         <input type="text" id="descripcion" required>
-    
+        <br>
         <label for="precio">Precio:</label>
         <input type="number" id="precio" step="0.01" required>
-    
+        <br>
         <button  type="button" onclick="crearRegistro()">CREAR</button>
     
     </form>
