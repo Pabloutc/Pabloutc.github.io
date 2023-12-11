@@ -36,21 +36,19 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const database=getDatabase(app);
-        function agregarPlato(nombre, descripcion, precio) {
-            // Obtiene una referencia a la colección de platos
-            var platosRef = database.ref('platos');
-
-            // Genera un nuevo identificador único para el plato
-            var nuevoPlatoRef = platosRef.push();
-
-            // Agrega el plato a la base de datos
-            nuevoPlatoRef.set({
-                nombre: nombre,
-                descripcion: descripcion,
-                precio: precio
-            });
-            }
-
+        window.crearRegistro =function(){
+            const nombre =document.getElementById("nombre").value;
+            const edad =document.getElementById("edad").value;
+            console.log(nombre, edad);
+            push(
+                ref(database, 'septimo'),
+                {
+                    name:nombre,
+                    age:edad
+                }
+            );
+        }
+        
     </script>
 
 
