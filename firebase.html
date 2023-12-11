@@ -58,7 +58,6 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const database=getDatabase(app);
-        const tableBody=document.getElementById('table')
         window.crearRegistro =function(){
             const nombre =document.getElementById("nombre").value;
             const descripcion =document.getElementById("descripcion").value;
